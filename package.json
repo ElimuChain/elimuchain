@@ -1,57 +1,34 @@
 {
-  "name": "se-2",
-  "version": "0.0.1",
+  "name": "vite-react-typescript-starter",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "account": "yarn hardhat:account",
-    "account:generate": "yarn workspace @se-2/hardhat account:generate",
-    "account:import": "yarn workspace @se-2/hardhat account:import",
-    "chain": "yarn hardhat:chain",
-    "compile": "yarn hardhat:compile",
-    "deploy": "yarn hardhat:deploy",
-    "fork": "yarn hardhat:fork",
-    "format": "yarn next:format && yarn hardhat:format",
-    "generate": "yarn account:generate",
-    "hardhat:account": "yarn workspace @se-2/hardhat account",
-    "hardhat:chain": "yarn workspace @se-2/hardhat chain",
-    "hardhat:check-types": "yarn workspace @se-2/hardhat check-types",
-    "hardhat:compile": "yarn workspace @se-2/hardhat compile",
-    "hardhat:deploy": "yarn workspace @se-2/hardhat deploy",
-    "hardhat:flatten": "yarn workspace @se-2/hardhat flatten",
-    "hardhat:fork": "yarn workspace @se-2/hardhat fork",
-    "hardhat:format": "yarn workspace @se-2/hardhat format",
-    "hardhat:generate": "yarn workspace @se-2/hardhat generate",
-    "hardhat:hardhat-verify": "yarn workspace @se-2/hardhat hardhat-verify",
-    "hardhat:lint": "yarn workspace @se-2/hardhat lint",
-    "hardhat:lint-staged": "yarn workspace @se-2/hardhat lint-staged",
-    "hardhat:test": "yarn workspace @se-2/hardhat test",
-    "hardhat:verify": "yarn workspace @se-2/hardhat verify",
-    "postinstall": "husky install",
-    "lint": "yarn nextjs:lint && yarn hardhat:lint",
-    "next:build": "yarn workspace @se-2/nextjs build",
-    "next:check-types": "yarn workspace @se-2/nextjs check-types",
-    "next:format": "yarn workspace @se-2/nextjs format",
-    "next:lint": "yarn workspace @se-2/nextjs lint",
-    "next:serve": "yarn workspace @se-2/nextjs serve",
-    "precommit": "lint-staged",
-    "start": "yarn workspace @se-2/nextjs dev",
-    "test": "yarn hardhat:test",
-    "vercel": "yarn workspace @se-2/nextjs vercel",
-    "vercel:login": "yarn workspace @se-2/nextjs vercel:login",
-    "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo",
-    "verify": "yarn hardhat:verify"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "husky": "~8.0.3",
-    "lint-staged": "~13.2.2"
-  },
-  "packageManager": "yarn@3.2.3",
-  "engines": {
-    "node": ">=18.18.0"
+    "@eslint/js": "^9.9.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.18",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.11",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.3.0",
+    "vite": "^5.4.2"
   }
 }

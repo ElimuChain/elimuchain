@@ -1,80 +1,134 @@
-# 🏗 Scaffold-ETH 2
+# ElimuChain - Secure Academic Credential Verification
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+ElimuChain is an innovative platform aimed at transforming academic credential verification in Kenya. By harnessing the power of both the **Lisk blockchain** for scalable sidechain functionality and **Solidity** for smart contract execution on the Ethereum Virtual Machine (EVM), we are dedicated to combating educational fraud, streamlining verification processes, and fostering trust in academic qualifications.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+**Target Audience**:
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+- Educational Institutions (Universities, Colleges, Schools)
+- Students and Graduates
+- Employers
+- Government Bodies
+- International Educational Partners
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+## Functionality
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+ElimuChain offers key functionalities:
 
-## Requirements
+- **Credential Issuance**: Institutions can issue digital certificates via Solidity smart contracts, recorded on the blockchain.
+- **Verification**: Employers or authorized parties can verify credentials instantly using smart contract functions with unique certificate IDs.
+- **Data Privacy**: Users maintain control over their data through blockchain's cryptographic methods.
+- **Interoperability**: Designed for seamless integration with existing educational systems.
 
-Before you begin, you need to install the following tools:
+## Unique Features
 
-- [Node (>= v18.18)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+- **Hybrid Blockchain Approach**: Combines Lisk's scalability with Ethereum's Solidity for robust and secure backend operations.
+- **User Empowerment**: Students have direct control over their educational data, managing access permissions through smart contracts.
+- **Cultural Adaptation**: Specifically tailored to meet the needs of the Kenyan educational context.
+- **Anti-Fraud Mechanism**: The immutable nature of blockchain ensures the integrity of issued credentials.
 
-## Quickstart
+## Installation
 
-To get started with Scaffold-ETH 2, follow the steps below:
+### Prerequisites:
 
-1. Install dependencies if it was skipped in CLI:
+- Node.js (version 14 or higher)
+- Lisk SDK (version 5.x)
+- Truffle Suite for Solidity development
+- Git
+- An Ethereum-compatible development environment (e.g., Ganache for local testing)
 
+### Steps:
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/ElimuChain/elimuchain
+   cd elimuchain
+   ```
+
+2. **Install Node Dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Install Solidity Dependencies**:
+
+   - Ensure Truffle is installed globally:
+
+   ```bash
+   npm install -g truffle
+   ```
+
+   - Install project-specific Solidity dependencies:
+
+   ```bash
+   truffle compile
+   ```
+
+4. **Configure Lisk Node & Ethereum Environment**:
+
+   - Edit `config.json` for Lisk node settings.
+   - Set up your local Ethereum network or use an existing testnet.
+
+5. **Start the Node**:
+   ```bash
+   npm run start
+   ```
+
+For development mode:
+
+```bash
+npm run dev
 ```
-cd my-dapp-example
-yarn install
+
+## Usage
+
+### For Educational Institutions:
+
+Deploy and interact with the `CertificateIssuer` contract:
+
+```solidity
+contract CertificateIssuer {
+    function issueCertificate(address student, string memory course, string memory institution) public;
+    // Additional functions...
+}
 ```
 
-2. Run a local network in the first terminal:
+### For Employers or Verifiers:
 
-```
-yarn chain
-```
+Verify credentials using the `CertificateVerifier` contract:
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
+```solidity
+contract CertificateVerifier {
+    function verifyCertificate(uint certificateId) public view returns (bool);
+}
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+### For Students:
 
-4. On a third terminal, start your NextJS app:
+Access your certificates through the frontend or directly interact with contracts.
 
-```
-yarn start
-```
+## Contributing
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+We welcome contributions to enhance ElimuChain! Here’s how you can help:
 
-Run smart contract test with `yarn hardhat:test`
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add AmazingFeature"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a pull request.
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+Please ensure your code adheres to our standards and passes all tests. Refer to our [Contribution Guidelines](CONTRIBUTING.md) for more information.
 
+## License
 
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
