@@ -75,7 +75,7 @@ ElimuChain offers key functionalities:
    ```bash
    npm run start
    ```
-    
+
 For development mode:
 
 ```bash
