@@ -1,30 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { 
-  Shield, 
-  Globe2, 
-  Clock, 
-  ChevronRight, 
-  GraduationCap,
-  Building2,
-  School,
-  CheckCircle2,
-  ArrowRight,
-  Mail,
-  Lock,
-  Users,
-  Zap,
-  Award
-} from 'lucide-react';
-import LandingPage from './pages/LandingPage';
-import GetStarted from './pages/GetStarted';
-import Dashboard from './pages/Dashboard';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import GetStarted from "./pages/GetStarted";
+import Dashboard from "./pages/Dashboard";
+import AboutPage from "./pages/AboutPage";
+import CareersPage from "./pages/CareersPage";
+import BlogPage from "./pages/BlogPage";
+import DocumentationPage from "./pages/DocumentationPage";
+import SupportPage from "./pages/SupportPage";
+import PartnersPage from "./pages/PartnersPage";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/documentation" element={<DocumentationPage />} />
+        <Route path="/support" element={<SupportPage />} />
+        <Route path="/partners" element={<PartnersPage />} />
         <Route path="/get-started/*" element={<GetStarted />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
       </Routes>
