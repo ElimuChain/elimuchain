@@ -28,13 +28,14 @@ ElimuChain offers key functionalities:
 
 ## Installation
 
-### Prerequisites:
+### Tech Stack:
 
-- Node.js (version 14 or higher)
-- Lisk SDK (version 5.x)
-- Truffle Suite for Solidity development
-- Git
-- An Ethereum-compatible development environment (e.g., Ganache for local testing)
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Blockchain**: Ethereum, Solidity
+- **Database**: Supabase
+- **Authentication**: Supabase Auth
+- **Web3**: ethers.js
+- **UI Components**: Lucide React
 
 ### Steps:
 
@@ -108,10 +109,20 @@ contract CertificateVerifier {
 
 Access your certificates through the frontend or directly interact with contracts.
 
+## Documentation
+
+Detailed documentation can be found in the [/doc](/doc) directory:
+
+- [Setup Guide](/doc/setup.md)
+- [Architecture Overview](/doc/architecture.md)
+- [Smart Contract Documentation](/doc/smart-contract.md)
+- [API Documentation](/doc/api.md)
+- [User Guide](/doc/user-guide.md)
+
 ## Contributing
 
 We welcome contributions to enhance ElimuChain! Here’s how you can help:
-
+Please read our [Contributing Guidelines](/doc/CONTRIBUTING.md) before submitting pull requests.
 1. Fork the repository.
 2. Create a feature branch:
    ```bash
