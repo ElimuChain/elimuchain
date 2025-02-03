@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { web3Service } from "../lib/web3";
+import Footer from "../components/Footer";
 
 function GetStarted() {
   const [userType, setUserType] = useState<string>("");
@@ -36,6 +37,7 @@ function GetStarted() {
           ))}
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -312,16 +314,16 @@ function Complete() {
           Welcome to ElimuChain!
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
-          Your account has been successfully created. You're ready to start
-          using ElimuChain.
+          Your account has been successfully created. Please sign in to access
+          your dashboard.
         </p>
       </div>
 
       <button
-        onClick={() => navigate("/dashboard")}
+        onClick={() => navigate("/sign-in")}
         className="w-full btn-primary justify-center"
       >
-        Go to Dashboard
+        Sign In
         <ChevronRight className="h-4 w-4" />
       </button>
     </div>
