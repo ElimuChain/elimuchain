@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-
+// Import ABI from a separate file to avoid potential build issues
 import ElimuChainABI from "../contracts/ElimuChain.json";
 
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
@@ -35,7 +35,7 @@ export class Web3Service {
 
       this.contract = new ethers.Contract(
         CONTRACT_ADDRESS,
-        ElimuChainABI,
+        ElimuChainABI as unknown as ethers.Interface,
         signer
       );
       return signer.getAddress();
