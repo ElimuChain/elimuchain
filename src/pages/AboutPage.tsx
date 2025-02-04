@@ -117,7 +117,7 @@ function AboutPage() {
                 name: "Khalid Hussein",
                 role: "Co-Founder & CEO",
                 image:
-                  "https://github.com/kh3rld/kh3rld.github.io/blob/main/web/static/img/k_nerd.png",
+                  "https://raw.githubusercontent.com/kh3rld/kh3rld.github.io/main/web/static/img/k_nerd.png",
                 bio: "A visionary leader with extensive experience in EdTech and blockchain technology. Hussein's passion for education and innovation drives ElimuChain's mission to revolutionize academic credentials.",
                 links: {
                   github: "https://github.com/kh3rld",
@@ -129,7 +129,7 @@ function AboutPage() {
                 name: "Doreen Onyango",
                 role: "Co-Founder & CTO",
                 image:
-                  "https://github.com/Doreen-Onyango/Doreen-Onyango.github.io/blob/main/image.png",
+                  "https://raw.githubusercontent.com/Doreen-Onyango/Doreen-Onyango.github.io/main/image.png",
                 bio: "A blockchain expert and software architect with a deep understanding of educational systems. Doreen leads the technical vision of ElimuChain, ensuring secure and scalable solutions.",
                 links: {
                   github: "https://github.com/Doreen-Onyango",
