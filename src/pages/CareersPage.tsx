@@ -41,12 +41,12 @@ function CareersPage() {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-            Join Our Mission
+            WE'LL FIND YOU, WHEN YOU NEED US!!!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            WE'LL FIND YOU, WHEN YOU WANT US!!! Alright, listen up! we're not
-            currently hiring, we're always interested in connecting with
-            talented individuals who share our vision.
+            Alright, listen up! we're not currently hiring, we're always
+            interested in connecting with talented individuals who share our
+            vision.
           </p>
         </div>
       </section>
