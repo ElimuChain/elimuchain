@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import { web3Service } from "../lib/web3";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import {
   LayoutDashboard,
   Award,
   UserCircle,
-  Settings,
+  Settings as SettingsIcon,
   Bell,
   HelpCircle,
+  Plus,
   Search,
+  Share2,
   CheckCircle,
   ChevronRight,
   Clock,
+  Download,
+  Eye,
 } from "lucide-react";
 import { ethers } from "ethers";
 
@@ -36,14 +40,15 @@ type Credential = {
 };
 
 // Components
-const Sidebar = () => {
+const Sidebar = ({ userType }: { userType: string }) => {
+  const navigate = useNavigate();
   const [activePath, setActivePath] = useState(window.location.pathname);
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Overview", path: "/dashboard" },
     { icon: Award, label: "Certificates", path: "/dashboard/certificates" },
     { icon: UserCircle, label: "Profile", path: "/dashboard/profile" },
-    { icon: Settings, label: "Settings", path: "/dashboard/settings" },
+    { icon: SettingsIcon, label: "Settings", path: "/dashboard/settings" },
     { icon: HelpCircle, label: "Help", path: "/dashboard/help" },
   ];
 
@@ -76,7 +81,7 @@ const Sidebar = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ userType }: { userType: string }) => {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -128,7 +133,7 @@ const Header = () => {
   );
 };
 
-const Overview = () => {
+const Overview = ({}: { userType: string; credentials: Credential[] }) => {
   const stats = [
     {
       label: "Total Certificates",
@@ -246,10 +251,211 @@ const Overview = () => {
   );
 };
 
+const Certificates = ({
+  userType,
+  credentials,
+  onIssueCredential,
+}: {
+  userType: string;
+  credentials: Credential[];
+  onIssueCredential: (
+    recipientEmail: string,
+    title: string,
+    description: string
+  ) => Promise<void>;
+}) => {
+  const [showIssueModal, setShowIssueModal] = useState(false);
+  const [formData, setFormData] = useState({
+    recipientEmail: "",
+    title: "",
+    description: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleIssue = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      await onIssueCredential(
+        formData.recipientEmail,
+        formData.title,
+        formData.description
+      );
+      setShowIssueModal(false);
+      setFormData({ recipientEmail: "", title: "", description: "" });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Certificates
+        </h2>
+        {userType === "institution" && (
+          <button
+            onClick={() => setShowIssueModal(true)}
+            className="btn-primary"
+          >
+            <Plus className="h-4 w-4" />
+            Issue Certificate
+          </button>
+        )}
+      </div>
+
+      {/* Certificate Grid */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {credentials.map((credential) => (
+          <div
+            key={credential.id}
+            className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  {credential.title}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Issued by {credential.issuer.full_name}
+                </p>
+              </div>
+              <div className="flex space-x-2">
+                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                  <Eye className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                </button>
+                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                  <Share2 className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                </button>
+                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                  <Download className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                </button>
+              </div>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {credential.description}
+            </p>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-500 dark:text-gray-400">
+                Issued on {new Date(credential.issue_date).toLocaleDateString()}
+              </span>
+              {credential.blockchain_tx_hash && (
+                <span className="text-green-600 dark:text-green-400 flex items-center">
+                  <CheckCircle className="h-4 w-4 mr-1" />
+                  Verified on Blockchain
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Issue Modal */}
+      {showIssueModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4">
+            <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+              Issue New Certificate
+            </h3>
+            {error && (
+              <div className="bg-red-50 dark:bg-red-900/50 text-red-600 dark:text-red-400 p-4 rounded-lg mb-4">
+                {error}
+              </div>
+            )}
+            <form onSubmit={handleIssue} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Recipient Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.recipientEmail}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      recipientEmail: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Certificate Title
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.title}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, title: e.target.value }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Description
+                </label>
+                <textarea
+                  required
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700"
+                  rows={3}
+                />
+              </div>
+              <div className="flex justify-end space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setShowIssueModal(false)}
+                  className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`btn-primary ${
+                    loading ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {loading ? "Issuing..." : "Issue Certificate"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Page Components
+const ProfilePage = ({ user }: { user: User | null }) => {
+  return <div>Profile Component</div>;
+};
+
+const SettingsPage = ({ user }: { user: User | null }) => {
+  return <div>Settings Component</div>;
+};
+
 function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
   const [credentials, setCredentials] = useState<Credential[]>([]);
-  const [, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchUserData();
@@ -355,28 +561,31 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Sidebar userType={user?.user_type} />
-      <Header userType={user?.user_type} />
+      <Sidebar userType={user?.user_type || ""} />
+      <Header userType={user?.user_type || ""} />
       <main className="ml-64 pt-16 p-8">
         <Routes>
           <Route
             path="/"
             element={
-              <Overview userType={user?.user_type} credentials={credentials} />
+              <Overview
+                userType={user?.user_type || ""}
+                credentials={credentials}
+              />
             }
           />
           <Route
             path="/certificates"
             element={
               <Certificates
-                userType={user?.user_type}
+                userType={user?.user_type || ""}
                 credentials={credentials}
                 onIssueCredential={issueCredential}
               />
             }
           />
-          <Route path="/profile" element={<Profile user={user} />} />
-          <Route path="/settings" element={<Settings user={user} />} />
+          <Route path="/profile" element={<ProfilePage user={user} />} />
+          <Route path="/settings" element={<SettingsPage user={user} />} />
           <Route path="/help" element={<div>Help Page</div>} />
         </Routes>
       </main>

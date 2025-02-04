@@ -10,10 +10,10 @@ import {
   School,
   CheckCircle2,
   ArrowRight,
-  Mail,
   Lock,
   Zap,
 } from "lucide-react";
+import Footer from "../components/Footer";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -389,100 +389,7 @@ function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center mb-6">
-                <GraduationCap className="h-8 w-8 text-blue-400" />
-                <span className="ml-2 text-xl font-bold">ElimuChain</span>
-              </div>
-              <p className="text-gray-400">
-                Revolutionizing academic credential verification through
-                blockchain technology.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/about"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="careers"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/blog"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/documentation"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/support"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Support
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/partners"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Partners
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Stay Updated</h4>
-              <form className="space-y-4">
-                <div className="flex">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="newsletter-input"
-                  />
-                  <button type="submit" className="newsletter-button">
-                    <Mail className="h-5 w-5" />
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>
-              &copy; {new Date().getFullYear()} ElimuChain. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

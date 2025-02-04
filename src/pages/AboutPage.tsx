@@ -10,6 +10,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import Footer from "../components/Footer";
 
 function AboutPage() {
   return (
@@ -116,7 +117,7 @@ function AboutPage() {
                 name: "Khalid Hussein",
                 role: "Co-Founder & CEO",
                 image:
-                  "https://github.com/kh3rld/kh3rld.github.io/blob/main/web/static/img/k_nerd.png",
+                  "https://raw.githubusercontent.com/kh3rld/kh3rld.github.io/main/web/static/img/k_nerd.png",
                 bio: "A visionary leader with extensive experience in EdTech and blockchain technology. Hussein's passion for education and innovation drives ElimuChain's mission to revolutionize academic credentials.",
                 links: {
                   github: "https://github.com/kh3rld",
@@ -128,7 +129,7 @@ function AboutPage() {
                 name: "Doreen Onyango",
                 role: "Co-Founder & CTO",
                 image:
-                  "https://github.com/Doreen-Onyango/Doreen-Onyango.github.io/blob/main/image.png",
+                  "https://raw.githubusercontent.com/Doreen-Onyango/Doreen-Onyango.github.io/main/image.png",
                 bio: "A blockchain expert and software architect with a deep understanding of educational systems. Doreen leads the technical vision of ElimuChain, ensuring secure and scalable solutions.",
                 links: {
                   github: "https://github.com/Doreen-Onyango",
@@ -231,28 +232,7 @@ function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <GraduationCap className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Join us in our mission to revolutionize education through
-              blockchain technology.
-            </p>
-            <div className="mt-8">
-              <Link to="/get-started" className="btn-primary inline-flex">
-                Get Started
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Link>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>
-              &copy; {new Date().getFullYear()} ElimuChain. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
