@@ -15,4 +15,11 @@ contract AccessControlManager is AccessControl {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
+    // Function to add a new admin
+    function addAdmin(address _admin) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        grantRole(DEFAULT_ADMIN_ROLE, _admin);
+        emit AdminAdded(_admin);
+    }
+
+
 }
