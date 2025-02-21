@@ -31,4 +31,10 @@ contract CredentialIssuance {
         admin = msg.sender;
     }
 
+    function registerInstitution(address _institution) external onlyAdmin {
+        institutions[_institution] = true;
+        emit InstitutionRegistered(_institution);
+    }
+
+
 }
