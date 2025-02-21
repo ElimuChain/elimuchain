@@ -21,5 +21,11 @@ contract AccessControlManager is AccessControl {
         emit AdminAdded(_admin);
     }
 
+    // Function to grant a role to a user
+    function grantUserRole(bytes32 role, address account) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _grantRole(role, account);
+        emit RoleGranted(role, account);
+    }
+
 
 }
