@@ -17,5 +17,16 @@ contract CredentialVerification {
         Credential memory cred = credentials[_student];
         return (cred.isValid && keccak256(abi.encodePacked(cred.credentialHash)) == keccak256(abi.encodePacked(_credentialHash)));
     }
+     
+    // Function to check if a student’s credential is verified
+    function isVerified(address _student) public view returns (bool) {
+        return credentials[_student].isValid;
+    }
+    
+    // Internal function to add credentials (only callable by an authorized entity in a real scenario)
+    function _addCredential(address _student, string memory _credentialHash) internal {
+        credentials[_student] = Credential(_credentialHash, true);
+        emit CredentialVerified(_student, true);
+    }
 
 }
