@@ -14,4 +14,11 @@ contract DataPrivacy {
         emit AccessGranted(msg.sender, _verifier);
     }
 
+    // Function to revoke access from a verifier
+    function revokeAccess(address _verifier) public {
+        require(accessPermissions[msg.sender][_verifier], "No access to revoke");
+        accessPermissions[msg.sender][_verifier] = false;
+        emit AccessRevoked(msg.sender, _verifier);
+    }
+
 }
