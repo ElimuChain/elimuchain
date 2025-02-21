@@ -42,4 +42,10 @@ contract CredentialIssuance {
         emit CredentialIssued(_student, _credentialHash, _course, _year);
     }
 
+    function getCredential(address _student) external view returns (string memory, string memory, uint256, bool) {
+        Credential memory cred = credentials[_student];
+        return (cred.credentialHash, cred.course, cred.year, cred.issued);
+    }
+    
+
 }
