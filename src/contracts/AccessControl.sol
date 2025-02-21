@@ -27,5 +27,9 @@ contract AccessControlManager is AccessControl {
         emit RoleGranted(role, account);
     }
 
+    // Function to check if a user has a specific role
+    function checkUserRole(bytes32 role, address account) public view returns (bool) {
+        return hasRole(role, account);
+    }
 
 }
