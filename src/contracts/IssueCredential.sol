@@ -36,5 +36,10 @@ contract CredentialIssuance {
         emit InstitutionRegistered(_institution);
     }
 
+    function issueCredential(address _student, string memory _credentialHash, string memory _course, uint256 _year) external onlyInstitution {
+        require(!credentials[_student].issued, "Credential already issued");
+        credentials[_student] = Credential(_credentialHash, _course, _year, true);
+        emit CredentialIssued(_student, _credentialHash, _course, _year);
+    }
 
 }
