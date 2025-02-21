@@ -21,4 +21,9 @@ contract DataPrivacy {
         emit AccessRevoked(msg.sender, _verifier);
     }
 
+    // Function to check if a verifier has access
+    function hasAccess(address _student, address _verifier) public view returns (bool) {
+        return accessPermissions[_student][_verifier];
+    }
+
 }
