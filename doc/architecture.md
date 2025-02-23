@@ -1,104 +1,57 @@
-# Architecture Overview
+# ElimuChain Architecture
 
-## System Architecture
+## System Overview
 
-ElimuChain follows a modern web3 architecture combining traditional web technologies with blockchain capabilities.
-
-### High-Level Architecture
+ElimuChain is built on a hybrid architecture that combines traditional web technologies with blockchain capabilities:
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   React Frontend│     │  Supabase       │     │  Ethereum       │
-│   (TypeScript)  │────▶│  (PostgreSQL)   │     │  Blockchain     │
-└────────┬────────┘     └────────┬────────┘     └────────┬────────┘
-         │                       │                       │
-         │                       │                       │
-    User Interface          Data Storage           Smart Contract
-         │                       │                       │
-         │                       │                       │
-    Authentication        Row Level Security     Credential Verification
+│    Frontend     │     │  Smart Contract │     │   Blockchain    │
+│  React + Web3   │ ←→  │    ElimuChain   │ ←→  │    Ethereum    │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-## Core Components
+### Components
 
-### Frontend (React + TypeScript)
+1. **Frontend Layer**
+   - React application with TypeScript
+   - Web3 integration for blockchain interaction
+   - Responsive UI with Tailwind CSS
+   - State management using React Hooks
 
-- **Pages**: React components for different views
-  - Landing Page
-  - Get Started Flow
-  - Dashboard
-  - Credential Management
+2. **Smart Contract Layer**
+   - Solidity smart contract
+   - Credential management
+   - Access control
+   - Verification logic
 
-- **State Management**: React Context and Hooks
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-
-### Backend (Supabase)
-
-- **Authentication**: Supabase Auth
-- **Database**: PostgreSQL with RLS
-- **Tables**:
-  - users
-  - credentials
-  - verifications
-
-### Blockchain (Ethereum)
-
-- **Smart Contract**: ElimuChain.sol
-- **Features**:
-  - Credential Issuance
-  - Verification
-  - Institution Management
+3. **Blockchain Layer**
+   - Ethereum network
+   - Immutable storage
+   - Decentralized verification
 
 ## Data Flow
 
-1. **User Registration**:
+1. **Credential Issuance**
    ```
-   Frontend → Supabase Auth → Database
-   ```
-
-2. **Credential Issuance**:
-   ```
-   Frontend → Smart Contract → Blockchain
-           → Supabase → Database
+   Institution → Frontend → Smart Contract → Blockchain
    ```
 
-3. **Verification**:
+2. **Credential Verification**
    ```
-   Frontend → Smart Contract → Verification Result
-           → Database Update
+   Verifier → Frontend → Smart Contract → Blockchain → Result
    ```
 
-## Security
+## Security Measures
 
-### Authentication
-
-- Supabase handles user authentication
-- JWT tokens for API requests
-- MetaMask for blockchain transactions
-
-### Authorization
-
-- Row Level Security in Supabase
-- Smart contract modifiers
-- Role-based access control
-
-### Data Privacy
-
-- Credential hashes on blockchain
-- Encrypted data in Supabase
-- Client-side encryption where necessary
+- Smart contract access control
+- Cryptographic verification
+- Authorized issuer system
+- Secure wallet integration
 
 ## Performance Considerations
 
-- Optimistic UI updates
-- Caching strategies
-- Efficient blockchain interactions
-- Indexed database queries
-
-## Future Improvements
-
-1. Layer 2 scaling solutions
-2. IPFS integration
-3. Multi-chain support
-4. Advanced analytics
+- Optimized smart contract gas usage
+- Frontend caching strategies
+- Efficient blockchain queries
+- Responsive UI design
