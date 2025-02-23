@@ -4,46 +4,38 @@ We love your input! We want to make contributing to ElimuChain as easy and trans
 
 ## Development Process
 
-We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
-
-1. Fork the repo and create your branch from `main`
-2. If you've added code that should be tested, add tests
-3. If you've changed APIs, update the documentation
-4. Ensure the test suite passes
-5. Make sure your code lints
-6. Issue that pull request!
+1. Fork the repo
+2. Create a branch from `main`
+3. Make your changes
+4. Submit a pull request
 
 ## Pull Request Process
 
-1. Update the README.md with details of changes if applicable
-2. Update the documentation with details of any changes to the interface
-3. The PR will be merged once you have the sign-off of two other developers
+1. Update documentation
+2. Update the README.md if needed
+3. The PR will be merged once you have the sign-off
 
-## Any contributions you make will be under the MIT Software License
+## Code Style
 
-In short, when you submit code changes, your submissions are understood to be under the same [MIT License](/LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
+- Use TypeScript
+- Follow ESLint rules
+- Write meaningful commit messages
+- Add appropriate comments
+- Include unit tests
 
-## Report bugs using GitHub's [issue tracker]
+## Reporting Bugs
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/ElimuChain/elimuchain/issues).
+- Use the issue tracker
+- Describe the bug
+- Include reproduction steps
+- Mention your environment
 
-## Write bug reports with detail, background, and sample code
+## Feature Requests
 
-**Great Bug Reports** tend to have:
-
-- A quick summary and/or background
-- Steps to reproduce
-  - Be specific!
-  - Give sample code if you can
-- What you expected would happen
-- What actually happens
-- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
-
-## Use a Consistent Coding Style
-
-* 2 spaces for indentation rather than tabs
-* You can try running `npm run lint` for style unification
+- Use the issue tracker
+- Explain the feature
+- Discuss potential implementation
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under its MIT License.
+By contributing, you agree that your contributions will be licensed under the MIT License.
