@@ -1,9 +1,9 @@
-import React from 'react';
-import { useWeb3 } from '../hooks/useWeb3';
-import { Wallet, Download } from 'lucide-react';
+import { useWeb3 } from "../hooks/useWeb3";
+import { Wallet, Download } from "lucide-react";
 
 export default function ConnectWallet() {
-  const { isConnected, isConnecting, error, connect, isWeb3Available } = useWeb3();
+  const { isConnected, isConnecting, error, connect, isWeb3Available } =
+    useWeb3();
 
   if (!isWeb3Available) {
     return (
@@ -27,17 +27,17 @@ export default function ConnectWallet() {
         disabled={isConnecting || isConnected}
         className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
           isConnected
-            ? 'bg-green-600/80 text-white'
-            : 'bg-blue-600/80 hover:bg-blue-700/80 text-white'
+            ? "bg-green-600/80 text-white"
+            : "bg-blue-600/80 hover:bg-blue-700/80 text-white"
         }`}
       >
         <Wallet className="w-5 h-5" />
         <span>
           {isConnecting
-            ? 'Connecting...'
+            ? "Connecting..."
             : isConnected
-            ? 'Connected'
-            : 'Connect Wallet'}
+            ? "Connected"
+            : "Connect Wallet"}
         </span>
       </button>
       {error && (
