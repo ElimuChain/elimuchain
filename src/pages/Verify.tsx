@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { Search, FileCheck, AlertCircle, Download } from 'lucide-react';
-import { useWeb3 } from '../hooks/useWeb3';
+import React, { useState } from "react";
+import { Search, FileCheck, AlertCircle, Download } from "lucide-react";
+import { useWeb3 } from "../hooks/useWeb3";
 
 export default function Verify() {
   const { isWeb3Available, isConnected } = useWeb3();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [verificationStatus, setVerificationStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [verificationStatus, setVerificationStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery) return;
 
-    setVerificationStatus('loading');
+    setVerificationStatus("loading");
     // Simulate verification process
     setTimeout(() => {
-      setVerificationStatus(Math.random() > 0.5 ? 'success' : 'error');
+      setVerificationStatus(Math.random() > 0.5 ? "success" : "error");
     }, 2000);
   };
 
@@ -23,9 +25,12 @@ export default function Verify() {
       <div className="min-h-screen py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">MetaMask Required</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              MetaMask Required
+            </h2>
             <p className="text-gray-300 mb-6">
-              To verify credentials, you need to have MetaMask installed. MetaMask allows secure interaction with the blockchain.
+              To verify credentials, you need to have MetaMask installed.
+              MetaMask allows secure interaction with the blockchain.
             </p>
             <a
               href="https://metamask.io/download/"
@@ -48,9 +53,12 @@ export default function Verify() {
       <div className="min-h-screen py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Connect Your Wallet</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Connect Your Wallet
+            </h2>
             <p className="text-gray-300 mb-6">
-              Please connect your wallet using the button in the navigation bar to verify credentials.
+              Please connect your wallet using the button in the navigation bar
+              to verify credentials.
             </p>
           </div>
         </div>
@@ -62,8 +70,12 @@ export default function Verify() {
     <div className="min-h-screen py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Verify Academic Credentials</h1>
-          <p className="text-gray-300">Enter the credential ID or scan QR code to verify authenticity</p>
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Verify Academic Credentials
+          </h1>
+          <p className="text-gray-300">
+            Enter the credential ID or scan QR code to verify authenticity
+          </p>
         </div>
 
         <div className="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 mb-8">
@@ -90,36 +102,38 @@ export default function Verify() {
           </form>
         </div>
 
-        {verificationStatus !== 'idle' && (
-          <div className={`backdrop-blur-lg rounded-3xl p-8 border transition-all duration-300 ${
-            verificationStatus === 'loading'
-              ? 'bg-white/10 border-white/20'
-              : verificationStatus === 'success'
-              ? 'bg-green-500/10 border-green-500/20'
-              : 'bg-red-500/10 border-red-500/20'
-          }`}>
+        {verificationStatus !== "idle" && (
+          <div
+            className={`backdrop-blur-lg rounded-3xl p-8 border transition-all duration-300 ${
+              verificationStatus === "loading"
+                ? "bg-white/10 border-white/20"
+                : verificationStatus === "success"
+                ? "bg-green-500/10 border-green-500/20"
+                : "bg-red-500/10 border-red-500/20"
+            }`}
+          >
             <div className="flex items-center space-x-4">
-              {verificationStatus === 'loading' ? (
+              {verificationStatus === "loading" ? (
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-              ) : verificationStatus === 'success' ? (
+              ) : verificationStatus === "success" ? (
                 <FileCheck className="w-8 h-8 text-green-500" />
               ) : (
                 <AlertCircle className="w-8 h-8 text-red-500" />
               )}
               <div>
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  {verificationStatus === 'loading'
-                    ? 'Verifying Credential...'
-                    : verificationStatus === 'success'
-                    ? 'Credential Verified'
-                    : 'Verification Failed'}
+                  {verificationStatus === "loading"
+                    ? "Verifying Credential..."
+                    : verificationStatus === "success"
+                    ? "Credential Verified"
+                    : "Verification Failed"}
                 </h3>
                 <p className="text-gray-300">
-                  {verificationStatus === 'loading'
-                    ? 'Please wait while we verify the credential on the blockchain...'
-                    : verificationStatus === 'success'
-                    ? 'This credential has been verified and is authentic.'
-                    : 'Unable to verify this credential. Please check the ID and try again.'}
+                  {verificationStatus === "loading"
+                    ? "Please wait while we verify the credential on the blockchain..."
+                    : verificationStatus === "success"
+                    ? "This credential has been verified and is authentic."
+                    : "Unable to verify this credential. Please check the ID and try again."}
                 </p>
               </div>
             </div>
