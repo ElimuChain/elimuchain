@@ -1,6 +1,13 @@
-import React from 'react';
-import { Shield, GraduationCap, Search, Award, Clock, Users } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import {
+  Shield,
+  GraduationCap,
+  Search,
+  Award,
+  Clock,
+  Users,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -17,7 +24,8 @@ export default function Home() {
                 Secure Academic Credentials
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-                Verify and issue academic credentials with blockchain-powered security and instant verification
+                Verify and issue academic credentials with blockchain-powered
+                security and instant verification
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Link
@@ -44,32 +52,32 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard 
+            <FeatureCard
               icon={<Shield className="w-8 h-8" />}
               title="Blockchain Security"
               description="Tamper-proof verification using advanced blockchain technology"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Search className="w-8 h-8" />}
               title="Instant Verification"
               description="Verify academic credentials in seconds with our powerful search"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Award className="w-8 h-8" />}
               title="Digital Certificates"
               description="Issue and manage digital certificates with ease"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Clock className="w-8 h-8" />}
               title="Time-Stamped"
               description="Every credential is permanently time-stamped on the blockchain"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Users className="w-8 h-8" />}
               title="Institution Portal"
               description="Dedicated portal for educational institutions to manage credentials"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<GraduationCap className="w-8 h-8" />}
               title="Student Access"
               description="Students can access and share their verified credentials anytime"
@@ -94,10 +102,20 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
   return (
-    <div className="backdrop-blur-lg bg-white/10 p-8 rounded-2xl border border-white/20
-      transition-all duration-300 hover:scale-105 hover:bg-white/20 group">
+    <div
+      className="backdrop-blur-lg bg-white/10 p-8 rounded-2xl border border-white/20
+      transition-all duration-300 hover:scale-105 hover:bg-white/20 group"
+    >
       <div className="mb-4 text-blue-400 group-hover:text-blue-300 transition-colors">
         {icon}
       </div>
@@ -107,7 +125,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
   );
 }
 
-function StatCard({ number, label }: { number: string, label: string }) {
+function StatCard({ number, label }: { number: string; label: string }) {
   return (
     <div className="p-4">
       <div className="text-4xl font-bold text-white mb-2">{number}</div>
