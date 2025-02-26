@@ -1,86 +1,54 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "./AccessControlManager.sol";
+import "./CredentialIssuance.sol";
+import "./DataPrivacy.sol";
+import "./CredentialVerification.sol";
+import "./ReputationSystem.sol";
+
 contract ElimuChain {
-    struct Credential {
-        address issuer;
-        address recipient;
-        string credentialHash;
-        uint256 timestamp;
-        bool isValid;
-    }
+    AccessControlManager public accessControlManager;
+    CredentialIssuance public credentialIssuance;
+    DataPrivacy public dataPrivacy;
+    CredentialVerification public credentialVerification;
+    ReputationSystem public reputationSystem;
 
-    mapping(bytes32 => Credential) public credentials;
-    mapping(address => bool) public verifiedInstitutions;
-
-    event CredentialIssued(
-        bytes32 indexed id,
-        address indexed issuer,
-        address indexed recipient,
-        string credentialHash,
-        uint256 timestamp
+    event ContractsDeployed(
+        address accessControlManager,
+        address credentialIssuance,
+        address dataPrivacy,
+        address credentialVerification,
+        address reputationSystem
     );
 
-    event InstitutionVerified(address institution);
+    constructor() {
+        // Deploy each contract and store their addresses
+        accessControlManager = new AccessControlManager();
+        credentialIssuance = new CredentialIssuance();
+        dataPrivacy = new DataPrivacy();
+        credentialVerification = new CredentialVerification();
+        reputationSystem = new ReputationSystem();
 
-    modifier onlyVerifiedInstitution() {
-        require(verifiedInstitutions[msg.sender], "Not a verified institution");
-        _;
-    }
-
-    function verifyInstitution(address institution) external {
-        verifiedInstitutions[institution] = true;
-        emit InstitutionVerified(institution);
-    }
-
-    function issueCredential(
-        address recipient,
-        string memory credentialHash
-    ) external onlyVerifiedInstitution {
-        bytes32 id = keccak256(
-            abi.encodePacked(
-                msg.sender,
-                recipient,
-                credentialHash,
-                block.timestamp
-            )
-        );
-
-        credentials[id] = Credential({
-            issuer: msg.sender,
-            recipient: recipient,
-            credentialHash: credentialHash,
-            timestamp: block.timestamp,
-            isValid: true
-        });
-
-        emit CredentialIssued(
-            id,
-            msg.sender,
-            recipient,
-            credentialHash,
-            block.timestamp
+        emit ContractsDeployed(
+            address(accessControlManager),
+            address(credentialIssuance),
+            address(dataPrivacy),
+            address(credentialVerification),
+            address(reputationSystem)
         );
     }
 
-    function verifyCredential(bytes32 id)
-        external
-        view
-        returns (
-            address issuer,
-            address recipient,
-            string memory credentialHash,
-            uint256 timestamp,
-            bool isValid
-        )
-    {
-        Credential memory credential = credentials[id];
+    // Function to get contract addresses
+    function getContractAddresses() public view returns (
+        address, address, address, address, address
+    ) {
         return (
-            credential.issuer,
-            credential.recipient,
-            credential.credentialHash,
-            credential.timestamp,
-            credential.isValid
+            address(accessControlManager),
+            address(credentialIssuance),
+            address(dataPrivacy),
+            address(credentialVerification),
+            address(reputationSystem)
         );
     }
 }
