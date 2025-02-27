@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 
-const ELIMUCHAIN_CONTRACT_ADDRESS = "Address";
+const ELIMUCHAIN_CONTRACT_ADDRESS = "0x65a22f0dd95924774c97d8768e43ddc59aacb1f9";
 const ELIMUCHAIN_ABI: ethers.Interface | ethers.InterfaceAbi = [
   // ABI will be added after contract deployment
   "src/contracts/ElimuChain.json"
