@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 const ELIMUCHAIN_CONTRACT_ADDRESS = "Address";
 const ELIMUCHAIN_ABI: ethers.Interface | ethers.InterfaceAbi = [
   // ABI will be added after contract deployment
+  "src/contracts/ElimuChain.json"
 ];
 
 interface Institution {
